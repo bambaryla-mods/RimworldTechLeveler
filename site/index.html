@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech Leveler</title>
+<meta name="description" content="A RimWorld 1.6 and 1.7 mod: your faction's tech level rises as you finish key research, and research above your level costs more.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">RimWorld 1.6 and 1.7 mod</p>
+      <h1>Tech Leveler</h1>
+      <p class="lede">Your faction's tech level goes up as you finish key research, one tier at a time. Research above your tier costs more, all the way up the ladder, including the tiers other mods add past Ultra.</p>
+      <p class="buttons">
+        <a class="btn primary" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3828217997">Steam Workshop</a>
+        <a class="btn" href="https://github.com/bambaryla-mods/RimworldTechLeveler">Source on GitHub</a>
+      </p>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#tiers">Tiers</a>
+    <a href="#cost">Research cost</a>
+    <a href="#proto">Proto tiers</a>
+    <a href="#tab">The Tech tiers tab</a>
+    <a href="#compat">Compatibility</a>
+    <a href="#modders">For modders</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="tiers">
+  <h2>Tiers</h2>
+  <p>Every tier has a list of key research. Finish all of it and your faction moves up to the next tier, and a letter tells you so. If you already have the key research for several tiers, you climb all of them at once. Your tier never goes down.</p>
+  <p>Your faction starts on the tier that matches its normal tech level. Vanilla code still sees one of its own tech levels, so each tier maps to one of them.</p>
+  <table>
+    <thead><tr><th>Tier</th><th>Vanilla sees</th><th>Where it comes from</th></tr></thead>
+    <tbody>
+      <tr><td>Neolithic</td><td>Neolithic</td><td>Tech Leveler</td></tr>
+      <tr><td>Medieval</td><td>Medieval</td><td>Tech Leveler</td></tr>
+      <tr><td>Industrial</td><td>Industrial</td><td>Tech Leveler</td></tr>
+      <tr><td>Spacer</td><td>Spacer</td><td>Tech Leveler</td></tr>
+      <tr><td>Advanced Spacer</td><td>Spacer</td><td>Added with All-Bamba armors, All-Bamba guns or Beyond Our Reach :: Redux. You need all of its research to move on.</td></tr>
+      <tr><td>Solar</td><td>Ultra</td><td>Beyond Our Reach :: Redux</td></tr>
+      <tr><td>Ultra</td><td>Ultra</td><td>Tech Leveler. Its key research comes from Royalty, Biotech and other mods.</td></tr>
+      <tr><td>Quasar</td><td>Ultra</td><td>Beyond Our Reach :: Redux</td></tr>
+      <tr><td>Post-ultra</td><td>Ultra</td><td>Only without Beyond Our Reach. It has no key research, so progression stops here.</td></tr>
+      <tr><td>Tenebral</td><td>Archotech</td><td>Beyond Our Reach :: Redux</td></tr>
+      <tr><td>Umbral</td><td>Archotech</td><td>Beyond Our Reach :: Redux. The end of the road.</td></tr>
+      <tr><td>Archotech</td><td>Archotech</td><td>Tech Leveler. Not reachable by research.</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A tier with no key research can't be left. That is how the ladder ends, and it is also why Ultra stops your progress if none of the mods that add Ultra research are loaded.</p>
+</section>
+
+<section id="cost">
+  <h2>Research cost</h2>
+  <p>A project costs an extra 50% of its base cost for every tier it sits above your faction. Vanilla uses the same 50% step but stops counting at Industrial, so Spacer and Ultra research never cost more than Industrial research. Tech Leveler keeps counting up the whole ladder.</p>
+  <table>
+    <thead><tr><th>Your tier</th><th>Project tier</th><th class="num">Cost</th><th class="num">Vanilla</th></tr></thead>
+    <tbody>
+      <tr><td>Neolithic</td><td>Industrial</td><td class="num">×2.0</td><td class="num">×2.0</td></tr>
+      <tr><td>Industrial</td><td>Spacer</td><td class="num">×1.5</td><td class="num">×1.0</td></tr>
+      <tr><td>Industrial</td><td>Ultra (no extra tiers)</td><td class="num">×2.0</td><td class="num">×1.0</td></tr>
+      <tr><td>Ultra</td><td>three tiers above</td><td class="num">×2.5</td><td class="num">×1.0</td></tr>
+    </tbody>
+  </table>
+  <p>Research of your own tier or below costs its base price, unless you are proto in that tier (see below). The research window note shows both levels and the cost, for example: <em>Your faction is industrial-level, the research is spacer-level. Base cost 1200 becomes 1800.</em></p>
+  <p class="note">Other mods' tiers change the distances. With Beyond Our Reach loaded there are more steps between Spacer and Archotech, so jumping ahead costs more.</p>
+</section>
+
+<section id="proto">
+  <h2>Proto tiers</h2>
+  <p>A tier you just reached doesn't feel like home yet. You are <em>proto</em> in it, and research of that tier costs up to 25% extra.</p>
+  <ol class="steps">
+    <li>When you reach a tier, the letter tells you how much extra its research costs and how many of its key research projects you need to finish: 20% of them, rounded up.</li>
+    <li>Each one you finish lowers the extra cost a step.</li>
+    <li>Once you finish enough, a second letter tells you your colony is properly in the tier, and its research costs the normal price.</li>
+  </ol>
+  <p class="note">Example: you reach Spacer and it has 10 key research projects, so you need 2. Right after you arrive, Spacer projects cost ×1.25 (they were ×1.5 while you were Industrial). After one key research they cost ×1.125, after two ×1.0. The tier you start the game on is never proto.</p>
+</section>
+
+<section id="tab">
+  <h2>The Tech tiers tab</h2>
+  <p>Every research bench, including modded ones, has a <em>Tech tiers</em> tab. It lists every tier and marks which ones you have reached. Select one to see its key research: finished projects in green, missing ones in red with their progress. If a tier can't be left, or is the last one, the tab says why.</p>
+  <p>Click a project name to open it in the research window. This works with the vanilla window, Research Tree, Nice Research Tab and YART. If the project can't be shown there, its info card opens instead.</p>
+</section>
+
+<section id="compat">
+  <h2>Compatibility</h2>
+  <ul>
+    <li><strong>Beyond Our Reach :: Redux:</strong> adds Solar before Ultra, Quasar after it, and Tenebral and Umbral in the archotech range.</li>
+    <li><strong>All-Bamba armors and guns, Beyond Our Reach:</strong> add the Advanced Spacer tier after Spacer.</li>
+    <li><strong>Other mods:</strong> key research from Royalty, Biotech, Combat Extended, Dubs Bad Hygiene, Dead Man's Switch, Vanilla Vehicles Expanded, Rimputers, Rim-Effect and a few others is added to the matching tier when they are loaded.</li>
+    <li><strong>YART:</strong> its era bands, colours and labels follow the Tech Leveler tiers, including the ones other mods add.</li>
+    <li><strong>[LFS] UI Rethemed - Core:</strong> when active, the Tech tiers tab is drawn in its theme.</li>
+    <li><strong>Not compatible:</strong> Tech Advancing by GHXX, which inspired this mod, and Vanilla Factions Expanded - Tribals. Both change the player faction's tech level and research cost too.</li>
+    <li>Requires Harmony.</li>
+  </ul>
+</section>
+
+<section id="modders">
+  <h2>For modders</h2>
+  <p>Tiers, key research and tier tags are plain XML, so you can change them with ordinary patches. Research is referenced by <code>defName</code> and resolved at startup. A name that doesn't exist logs one warning and is skipped.</p>
+  <dl class="rules">
+    <dt>Add key research to a tier</dt>
+    <dd>Add <code>&lt;li&gt;</code> entries to the tier's <code>keyResearch</code> list, for example <code>/Defs/TechLeveler.TechTierDef[defName="TL_Ultra"]/keyResearch</code>. Use <code>MayRequire</code> so the entry is skipped when your mod isn't loaded. If the tier has no <code>keyResearch</code> list yet, add an empty one first.</dd>
+    <dt>Put a project in a tier</dt>
+    <dd>Add it to the tier's <code>tierResearch</code> list, or give the research def a <code>TechLeveler.ResearchTierExtension</code>. Otherwise a project goes in the lowest tier that matches its vanilla tech level.</dd>
+    <dt>Add a new tier</dt>
+    <dd>Add a <code>TechLeveler.TechTierDef</code> with an <code>order</code> (Spacer is 50, Ultra 60, Archotech 70) and a <code>vanillaLevel</code>. Wrap it in <code>PatchOperationFindMod</code> so it only exists with your mod.</dd>
+  </dl>
+  <p><code>Common/Patches/_Example_AddResearch.xml.example</code> in the mod folder is a patch you can copy, and <code>Common/Patches/BorRedux_Tiers.xml</code> shows a full set of new tiers.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Tech Leveler by Bambaryla. Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+  </div>
+</footer>
+
+</body>
+</html>

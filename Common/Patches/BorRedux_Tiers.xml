@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Example integration: adds the Solar, Quasar, Tenebral and Umbral tiers, but only when "Beyond Our Reach :: Redux" is loaded.
+     Copy this file for your own mod:
+       1. PatchOperationFindMod runs <match> only when a mod with that NAME (About.xml <name>, not the package id)
+          is loaded. Everything inside is skipped otherwise.
+       2. New tiers are plain defs appended to /Defs. <order> places them on the ladder (Spacer = 50, Advanced Spacer = 54, Ultra = 60, Archotech = 70; Solar sits at 58, before Ultra),
+          <vanillaLevel> is the level the base game sees.
+       3. A tier is left once its <keyResearch> is finished. A tier with no key research cannot be left until
+          something is patched in (see _Example_AddResearch.xml.example).
+       4. To make your research cost more before its tier is reached, tag it in the research def itself:
+          <modExtensions><li Class="TechLeveler.ResearchTierExtension" MayRequire="bambaryla.techleveler"><tier>TL_Solar</tier></li></modExtensions>
+     Research names that do not exist are skipped with a warning, so wrong names never break loading.
+
+     Which BOR research is a key research: the main progression chain of each bench (analyzers, production, power,
+     battery, armor, weapons, medicine, bionics, drugs, joy, storage, hydroponics, n-synthesis). Specialist research
+     (individual weapon families, raw/chemistry/etc. recipes, turrets, ammo, desks, holographics, pumps, mechtech,
+     deep drills, shielding) is not required. The next bench's analyzer (or the research gate) closes each tier. -->
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Beyond Our Reach :: Redux</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- The ladder is Spacer, Advanced Spacer, Solar, Ultra, Quasar, Tenebral, Umbral, Archotech.
+				     Advanced Spacer (AdvancedSpacer_Tiers.xml) includes the Kylar-Xar computer, the gate to every BOR bench,
+				     so Solar cannot start without it. -->
+
+				<!-- The new tiers. Solar, Quasar: vanillaLevel Ultra, Tenebral, Umbral: vanillaLevel Archotech;
+				     the base game cannot tell them apart from the level they share. Solar sits before Ultra (58 < 60). -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+						<TechLeveler.TechTierDef>
+							<defName>TL_Solar</defName>
+							<label>solar</label>
+							<description>Vanilla treats this as ultra.</description>
+							<order>58</order>
+							<vanillaLevel>Ultra</vanillaLevel>
+							<!-- Root of the BOR tree. It is Ultra-level in the base game, which would drag every Solar project into the Ultra band. -->
+							<tierResearch>
+								<li>BOR_Research_Analyzer_I</li>
+							</tierResearch>
+							<keyResearch>
+								<li>BOR_Research_Analyzer_I</li>
+								<li>BOR_Research_Production_I</li>
+								<li>BOR_Research_Power_I</li>
+								<li>BOR_Research_Battery_I</li>
+								<li>BOR_Research_Quarks_I</li>
+								<li>BOR_Research_Armor_I</li>
+								<li>BOR_Research_JetArmor_I</li>
+								<li>BOR_Research_Weapons_I</li>
+								<li>BOR_Research_Medicine_I</li>
+								<li>BOR_Research_Bionics_I</li>
+								<li>BOR_Research_Drugs_I</li>
+								<li>BOR_Research_Joy_I</li>
+								<li>BOR_Research_Storage_I</li>
+								<li>BOR_Research_Hydroponics_I</li>
+								<li>BOR_Research_NSynth_I</li>
+								<li>BOR_Research_Analyzer_II</li>
+							</keyResearch>
+						</TechLeveler.TechTierDef>
+						<TechLeveler.TechTierDef>
+							<defName>TL_Quasar</defName>
+							<label>quasar</label>
+							<description>Vanilla treats this as ultra.</description>
+							<order>64</order>
+							<vanillaLevel>Ultra</vanillaLevel>
+							<keyResearch>
+								<li>BOR_Research_Production_II</li>
+								<li>BOR_Research_Power_II</li>
+								<li>BOR_Research_Battery_II</li>
+								<li>BOR_Research_Armor_II</li>
+								<li>BOR_Research_Weapons_II</li>
+								<li>BOR_Research_Medicine_II</li>
+								<li>BOR_Research_Bionics_II</li>
+								<li>BOR_Research_Drugs_II</li>
+								<li>BOR_Research_Joy_II</li>
+								<li>BOR_Research_Storage_II</li>
+								<li>BOR_Research_Hydroponics_II</li>
+								<li>BOR_Research_NSynth_II</li>
+								<li>BOR_Research_Analyzer_III</li>
+							</keyResearch>
+						</TechLeveler.TechTierDef>
+						<TechLeveler.TechTierDef>
+							<defName>TL_Tenebral</defName>
+							<label>tenebral</label>
+							<description>Vanilla treats this as archotech.</description>
+							<order>66</order>
+							<vanillaLevel>Archotech</vanillaLevel>
+							<keyResearch>
+								<li>BOR_Research_Production_III</li>
+								<li>BOR_Research_Power_III</li>
+								<li>BOR_Research_Armor_III</li>
+								<li>BOR_Research_Weapons_III</li>
+								<li>BOR_Research_Medicine_III</li>
+								<li>BOR_Research_Bionics_III</li>
+								<li>BOR_Research_Joy_III</li>
+								<li>BOR_Research_Storage_III</li>
+								<li>BOR_Research_Hydroponics_III</li>
+								<li>BOR_Research_ComponentHarvest</li>
+								<li>BOR_Research_Gate_III</li>
+							</keyResearch>
+						</TechLeveler.TechTierDef>
+						<TechLeveler.TechTierDef>
+							<defName>TL_Umbral</defName>
+							<label>umbral</label>
+							<description>Vanilla treats this as archotech.</description>
+							<order>68</order>
+							<vanillaLevel>Archotech</vanillaLevel>
+							<!-- No key research: Umbral is the end of the road. Archotech is not reachable by research. -->
+						</TechLeveler.TechTierDef>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

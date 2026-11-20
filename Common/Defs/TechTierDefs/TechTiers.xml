@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- Tiers are sorted by <order>. vanillaLevel is what the base game sees.
+	     Rule: the player advances from a tier to the NEXT one once that tier's key research is finished.
+	       keyResearch: ALL of these must be finished.
+	     Unknown research names are skipped (warning). A tier with no resolvable key research cannot be left
+	     (the player stays on it) until another mod patches research in. The last tier has no keys.
+	     Patch example: Patches/_Example_AddResearch.xml.example -->
+
+	<TechLeveler.TechTierDef>
+		<defName>TL_Neolithic</defName>
+		<label>neolithic</label>
+		<description>Tribal technology: stone, fire and simple tools.</description>
+		<order>20</order>
+		<vanillaLevel>Neolithic</vanillaLevel>
+		<keyResearch>
+			<li>Brewing</li>
+			<li>Pemmican</li>
+			<li>PassiveCooler</li>
+			<li>RecurveBow</li>
+		</keyResearch>
+	</TechLeveler.TechTierDef>
+
+	<TechLeveler.TechTierDef>
+		<defName>TL_Medieval</defName>
+		<label>medieval</label>
+		<description>Metalworking, complex clothing and basic crafts.</description>
+		<order>30</order>
+		<vanillaLevel>Medieval</vanillaLevel>
+		<keyResearch>
+			<li>Smithing</li>
+			<li>ComplexClothing</li>
+			<li>ComplexFurniture</li>
+			<li>Stonecutting</li>
+			<li>PlateArmor</li>
+			<li>LongBlades</li>
+		</keyResearch>
+	</TechLeveler.TechTierDef>
+
+	<TechLeveler.TechTierDef>
+		<defName>TL_Industrial</defName>
+		<label>industrial</label>
+		<description>Electricity, microelectronics and mass production.</description>
+		<order>40</order>
+		<vanillaLevel>Industrial</vanillaLevel>
+		<keyResearch>
+			<li>Electricity</li>
+			<li>Machining</li>
+			<li>MicroelectronicsBasics</li>
+			<li>MultiAnalyzer</li>
+			<li>Fabrication</li>
+			<li>MedicineProduction</li>
+			<li>GunTurrets</li>
+		</keyResearch>
+	</TechLeveler.TechTierDef>
+
+	<TechLeveler.TechTierDef>
+		<defName>TL_Spacer</defName>
+		<label>spacer</label>
+		<description>Bionics, powered armor, cryptosleep and starship basics.</description>
+		<order>50</order>
+		<vanillaLevel>Spacer</vanillaLevel>
+		<keyResearch>
+			<li>Bionics</li>
+			<li>ShieldBelt</li>
+			<li>ReconArmor</li>
+			<li>PoweredArmor</li>
+			<li>ChargedShot</li>
+			<li>Cryptosleep</li>
+			<li>ShipBasics</li>
+			<li>ShipReactor</li>
+			<li>ShipComputerCore</li>
+		</keyResearch>
+	</TechLeveler.TechTierDef>
+
+	<TechLeveler.TechTierDef>
+		<defName>TL_Ultra</defName>
+		<label>ultra</label>
+		<description>Advanced implants and mechanoid engineering.</description>
+		<order>60</order>
+		<vanillaLevel>Ultra</vanillaLevel>
+	</TechLeveler.TechTierDef>
+
+	<!-- Ultra has no key research here, so a player on Ultra stays there. Integrations add it:
+	     see Patches/BorRedux_Tiers.xml, which adds Solar (before Ultra) and Quasar to Umbral (after it), and Ultra's key research. -->
+
+	<TechLeveler.TechTierDef>
+		<defName>TL_Archotech</defName>
+		<label>archotech</label>
+		<description>Beyond comprehension. The final tier.</description>
+		<order>70</order>
+		<vanillaLevel>Archotech</vanillaLevel>
+	</TechLeveler.TechTierDef>
+</Defs>

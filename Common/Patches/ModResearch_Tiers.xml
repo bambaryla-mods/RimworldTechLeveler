@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Key research from other mods. Each goes in the tier matching its techLevel; MayRequire skips it when the mod is not loaded.
+     Ultra's keyResearch container is created below if nothing else made it. -->
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Medieval"]/keyResearch</xpath>
+		<value>
+			<li MayRequire="CETeam.CombatExtended">CE_Gunpowder</li>
+			<li MayRequire="Dubwise.DubsBadHygiene">Plumbing</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Industrial"]/keyResearch</xpath>
+		<value>
+			<li MayRequire="Aoba.DeadManSwitch.Core">DMS_UAVBasis</li>
+			<li MayRequire="Aoba.DeadManSwitch.Core">DMS_MechBasis</li>
+			<li MayRequire="Aoba.DeadManSwitch.Core">DMS_Hypothesis</li>
+			<li MayRequire="OskarPotocki.VanillaVehiclesExpanded">VVE_BasicVehicles</li>
+			<li MayRequire="OskarPotocki.VanillaVehiclesExpanded">VVE_AerialVehicles</li>
+			<li MayRequire="joeyjoejoeshabidoo.rimputers1.4">Rimputer_supercomputer</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Spacer"]/keyResearch</xpath>
+		<value>
+			<li MayRequire="4loris4.MoreLinkables">AdvancedMultiAnalyzer</li>
+			<li MayRequire="Hawks.W40K.Pack">Hawks_BasicCrafting_R</li>
+			<li MayRequire="Meltup.AdvancedPowerPlus">advanced_fueled_nuclear_generator</li>
+			<li MayRequire="bambaryla.powerintegrator">PI_UltratechPower</li>
+			<li MayRequire="Dubwise.DubsBadHygiene">SpacerHygieneRecycling</li>
+			<li MayRequire="Dubwise.DubsBadHygiene">AsteroidCryoMining</li>
+			<li MayRequire="joeyjoejoeshabidoo.rimputers1.4">Rimputer_quantumcomputer</li>
+		</value>
+	</Operation>
+
+	<!-- Ultra has no keyResearch in the base defs; create the container if nothing else did. -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Ultra"]/keyResearch</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Ultra"]</xpath>
+			<value>
+				<keyResearch />
+			</value>
+		</nomatch>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Ultra"]/keyResearch</xpath>
+		<value>
+			<li MayRequire="Ludeon.RimWorld.Royalty">HealingFactors</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">NeuralComputation</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">SkinHardening</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">FleshShaping</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">ArtificialMetabolism</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">MolecularAnalysis</li>
+			<li MayRequire="Ludeon.RimWorld.Royalty">CircadianInfluence</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">UltraMechtech</li>
+			<li MayRequire="RimEffectRenegade.Core">RE_BasicPrefabrication</li>
+			<li MayRequire="RimEffectRenegade.Core">RE_ElementZero</li>
+			<li MayRequire="RimEffectRenegade.Core">RE_FusionReactor</li>
+			<li MayRequire="RimEffectRenegade.Core">RE_MassAcceleration</li>
+			<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_GlitterBallisticWeaponry</li>
+			<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_GlitterSpecialistBallisticWeaponry</li>
+			<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_GlitterHeavyBallisticWeaponry</li>
+			<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_UltraLaunchers</li>
+			<li MayRequire="bambaryla.AllBambaGuns,Ludeon.RimWorld.Biotech">ABG_Research_ToxicLaunchers</li>
+			<li MayRequire="bamba.allbambamelee.tiered">Bamba_Melee_Research_Ultra</li>
+		</value>
+	</Operation>
+
+
+	<!-- Without BOR nothing sits between Ultra and Archotech, so finishing the Ultra keys would jump straight to Archotech.
+	     Add a dead-end tier (no keyResearch = cannot be left) so the player stops there. Skipped when BOR adds its own tiers. -->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Beyond Our Reach :: Redux</li>
+		</mods>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<TechLeveler.TechTierDef>
+					<defName>TL_UltraEnd</defName>
+					<label>post-ultra</label>
+					<description>The end of the road without further tiers. Another mod must add key research here to go on to archotech.</description>
+					<order>65</order>
+					<vanillaLevel>Ultra</vanillaLevel>
+				</TechLeveler.TechTierDef>
+			</value>
+		</nomatch>
+	</Operation>
+</Patch>

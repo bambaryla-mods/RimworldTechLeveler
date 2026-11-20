@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Tech Leveler</name>
+	<author>Bambaryla</author>
+	<supportedVersions>
+		<li>1.6</li>
+		<li>1.7</li>
+	</supportedVersions>
+	<packageId>bambaryla.techleveler</packageId>
+	<description>Tech Leveler gives your faction a tech level that progresses on its own, and makes research cost more when you are not ready for it.
+
+[b]Progression[/b]
+Each tier has key research. Finish it and your faction moves up to the next tier, with a letter to tell you. A tab on research benches shows where you stand and which key research is still missing.
+
+[b]Research cost[/b]
+A project's cost grows by half its base cost for every tier it sits above your faction. Vanilla stops counting at Industrial, so Spacer, Ultra and beyond finally cost more if you jump ahead.
+
+[b]Extensibility[/b]
+Tiers, key research and tier assignments are plain XML, so other mods can add research to a tier, or define new tiers, with ordinary patches. Research is referenced by defName and resolved at startup. A missing one logs a single warning and is skipped. Common/Patches/_Example_AddResearch.xml.example is a patch you can copy.
+
+[b]Compatibility[/b]
+- Beyond Our Reach :: Redux: a built-in patch adds Solar (before Ultra), Quasar (after it), and Tenebral and Umbral in the archotech band. Umbral is the end of the road.
+- All-Bamba armors, guns and Beyond Our Reach: add an Advanced Spacer tier after Spacer. Finish all of its research to move on.
+- Research trees: the tab can jump to a project in the vanilla research window, Mlie's Research Tree, Nice Research Tab and YART. YART's era bands, colours and labels follow the Tech Leveler tiers, including the extra tiers from other mods.
+- [LFS] UI Rethemed: with its Core active, the Tech tiers tab is drawn in the UI Rethemed theme to match its inspector tabs.
+- Tech Advancing by GHXX: its inspiration and spiritual predecessor. Tech Leveler is a separate implementation and is not compatible with it.
+- Vanilla Factions Expanded - Tribals: not compatible. Both mods control the player faction's tech level and research cost, and they overwrite each other.
+
+Requires Harmony.</description>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<incompatibleWith>
+		<li>ghxx.techadvancing</li>
+		<li>OskarPotocki.VFE.Tribals</li>
+	</incompatibleWith>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+		<li>LazyFridayStudio.UIRethemed.Core</li>
+	</loadAfter>
+</ModMetaData>

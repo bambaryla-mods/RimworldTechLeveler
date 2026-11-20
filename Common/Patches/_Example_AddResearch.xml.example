@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Solar to Umbral come from BorRedux_Tiers.xml and only exist with "Beyond Our Reach :: Redux": wrap a patch on them in the same PatchOperationFindMod. -->
+<!-- Rename to *.xml (and put in a mod's Patches folder) to activate. -->
+<Patch>
+	<!-- Add key research to a tier. The player leaves this tier (here Solar -> Quasar) once it is finished.
+	     If the tier has no <keyResearch> yet, add the container first. -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Solar"]/keyResearch</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Solar"]</xpath>
+			<value><keyResearch /></value>
+		</nomatch>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/TechLeveler.TechTierDef[defName="TL_Solar"]/keyResearch</xpath>
+		<value>
+			<li MayRequire="some.modpackageid">SomeModResearchDefName</li>
+		</value>
+	</Operation>
+	<!-- Mark a research project as belonging to a tier (cost scaling): same pattern with <tierResearch>. -->
+</Patch>

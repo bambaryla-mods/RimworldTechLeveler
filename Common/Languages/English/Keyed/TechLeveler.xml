@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<TechLeveler_LetterLabel>Tech tier reached: {0}</TechLeveler_LetterLabel>
+	<TechLeveler_LetterText>Your colony's technology has advanced to the {0} tier.\n\n{1}</TechLeveler_LetterText>
+	<TechLeveler_LetterProto>You are proto-{0}: research of this tier costs {1} extra for now. Finish {2} of its key research to remove the penalty; each one reduces it step by step.</TechLeveler_LetterProto>
+	<TechLeveler_ProtoDoneLabel>Fully {0}</TechLeveler_ProtoDoneLabel>
+	<TechLeveler_ProtoDoneText>Your researchers have found their footing. You are no longer proto-{0}: your colony is properly {0} now, and research of this tier no longer costs extra.</TechLeveler_ProtoDoneText>
+	<TechLeveler_TabLabel>Tech tiers</TechLeveler_TabLabel>
+	<TechLeveler_Reached>Reached</TechLeveler_Reached>
+	<TechLeveler_Current>Current tier</TechLeveler_Current>
+	<TechLeveler_NotReached>Not reached yet</TechLeveler_NotReached>
+	<TechLeveler_KeysHeader>Key research needed to leave this tier:</TechLeveler_KeysHeader>
+	<TechLeveler_NoKeys>This tier has no key research defined. Progression stops here until a mod adds some.</TechLeveler_NoKeys>
+	<TechLeveler_FinalTier>This is the final tier.</TechLeveler_FinalTier>
+	<TechLeveler_LetterUnlockedBy>Unlocked by: {0}</TechLeveler_LetterUnlockedBy>
+
+	<!-- Override of the vanilla research window note (shown as "<TechLevelTooLow> <ResearchCostComparison>"): shorter wording.
+	     TechLevelTooLow: {0} faction level, {1} project level, {2} speed multiplier (unused).
+	     ResearchCostComparison: {0} base cost, {1} cost for you. -->
+	<TechLeveler_ProtoNote>You are proto-{0} and the research is {0}-level, so it costs more.</TechLeveler_ProtoNote>
+	<TechLevelTooLow>Your faction is {0}-level, the research is {1}-level.</TechLevelTooLow>
+	<ResearchCostComparison>Base cost {0} becomes {1}.</ResearchCostComparison>
+</LanguageData>

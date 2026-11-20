@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- Optional look for the Tech tiers tab, drawn with [LFS] UI Rethemed - Core. Compiled against its DLL and
+	     loaded only when that mod is active (LoadFolders IfModActive), so Tech Leveler never depends on it.
+	     Building this also builds TechLeveler.csproj for the same GameVersion. -->
+
+	<PropertyGroup>
+		<GameVersion Condition="'$(GameVersion)' == ''">1.6</GameVersion>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<AssemblyName>TechLeveler.UIRethemed</AssemblyName>
+		<RootNamespace>TechLeveler.UIRethemed</RootNamespace>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<OutputPath>..\..\Compat\UIRethemed\$(GameVersion)\Assemblies\</OutputPath>
+		<BaseIntermediateOutputPath>obj\$(GameVersion)\</BaseIntermediateOutputPath>
+		<DefaultItemExcludes>$(DefaultItemExcludes);obj/**</DefaultItemExcludes>
+		<GameDir>..\..\..\..\</GameDir>
+		<ManagedDir>$(GameDir)RimWorldWin64_Data\Managed\</ManagedDir>
+		<!-- [LFS] UI Rethemed - Core, Steam Workshop 3832843406. Override with -p:LfsCoreDir=... for a local copy. -->
+		<LfsCoreDir Condition="'$(LfsCoreDir)' == ''">$(GameDir)..\..\workshop\content\294100\3832843406\</LfsCoreDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(GameVersion)' == '1.6'">
+		<TargetFramework>net472</TargetFramework>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(GameVersion)' == '1.7'">
+		<TargetFramework>net10.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Lib.Harmony" Version="2.4.3" ExcludeAssets="runtime" />
+		<ProjectReference Include="..\TechLeveler.csproj" Private="false" />
+		<Reference Include="UIRethemedCore">
+			<HintPath>$(LfsCoreDir)Versions\$(GameVersion)\Assemblies\UIRethemedCore.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(GameVersion)' == '1.6'">
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(ManagedDir)Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(ManagedDir)UnityEngine.CoreModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>$(ManagedDir)UnityEngine.IMGUIModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.TextRenderingModule">
+			<HintPath>$(ManagedDir)UnityEngine.TextRenderingModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(GameVersion)' == '1.7'">
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(GameDir)Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityStubs">
+			<HintPath>$(GameDir)UnityStubs.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+</Project>

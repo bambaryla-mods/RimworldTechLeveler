@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Advanced Spacer: a sublevel of Spacer (vanillaLevel Spacer) that sits between Spacer and whatever follows
+     (Solar with Beyond Our Reach, otherwise Ultra). Added when any of these is loaded:
+       - Armors For All Post-Medieval Tech Levels (flanker, vanguard, breacher)
+       - Guns For All Post-Medieval Tech Levels (advanced charge and ballistic weaponry)
+       - Beyond Our Reach :: Redux (Kylar-Xar effect computer, the gate to every BOR bench)
+     Leaving the tier needs ALL of its research. Each is also tagged (tierResearch), so it costs extra before
+     the tier is reached. Spacer's own key research is not touched. -->
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Armors For All Post-Medieval Tech Levels</li>
+			<li>Guns For All Post-Medieval Tech Levels</li>
+			<li>Beyond Our Reach :: Redux</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs</xpath>
+			<value>
+				<TechLeveler.TechTierDef>
+					<defName>TL_AdvancedSpacer</defName>
+					<label>advanced spacer</label>
+					<description>Vanilla treats this as spacer.</description>
+					<order>54</order>
+					<vanillaLevel>Spacer</vanillaLevel>
+					<keyResearch>
+						<li MayRequire="Bamba.AllBambaArmors">ABT_Research_AS_ReconArmor</li>
+						<li MayRequire="Bamba.AllBambaArmors">ABT_Research_AS_MarineArmor</li>
+						<li MayRequire="Bamba.AllBambaArmors">ABT_Research_AS_CataphractArmor</li>
+						<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_AdvancedChargeWeaponry</li>
+						<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_AdvancedBallisticWeaponry</li>
+						<li MayRequire="bambaryla.bor.redux">BOR_Kylar_Xar_Computer</li>
+					</keyResearch>
+					<tierResearch>
+						<li MayRequire="Bamba.AllBambaArmors">ABT_Research_AS_ReconArmor</li>
+						<li MayRequire="Bamba.AllBambaArmors">ABT_Research_AS_MarineArmor</li>
+						<li MayRequire="Bamba.AllBambaArmors">ABT_Research_AS_CataphractArmor</li>
+						<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_AdvancedChargeWeaponry</li>
+						<li MayRequire="bambaryla.AllBambaGuns">ABG_Research_AdvancedBallisticWeaponry</li>
+						<li MayRequire="bambaryla.bor.redux">BOR_Kylar_Xar_Computer</li>
+					</tierResearch>
+				</TechLeveler.TechTierDef>
+			</value>
+		</match>
+	</Operation>
+</Patch>
